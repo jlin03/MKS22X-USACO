@@ -30,7 +30,19 @@ public class USACO {
          pasture[r][c] = data[c];
        }
      }
-     
+     for(int m = 0; m < n; m++) {
+       line = scan.nextLine();
+       dataS = line.split(" ");
+       int[] data = new int[dataS.length];
+       for(int i = 0; i < dataS.length; i++) {
+         data[i] = Integer.parseInt(dataS[i]);
+       }
+       int r_s = data[0];
+       int c_s = data[1];
+       int d_s = data[3];
+
+     }
+
 
 
     }

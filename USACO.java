@@ -105,7 +105,7 @@ public class USACO {
 			dataS = line.split(" ");
 			int[] coords = new int[4];
 			for(int i = 0; i < dataS.length; i++) {
-				coords[i] = Integer.parseInt(dataS[i]);
+				coords[i] = Integer.parseInt(dataS[i]) - 1;
 			}
 			int[][] currentB = new int[rows][cols];
 			int[][] nextB = new int[rows][cols];
@@ -117,7 +117,9 @@ public class USACO {
 					for(int c = 0; c < cols; c++) {
 						if(pasture[r][c] != '*') {
 							for(int m = 0; m < pos.length; m++) {
-								nextB[r][c] += currentB[pos[m][0]][pos[m][1]];
+								if(!(r+pos[m][0] < 0 || c+pos[m][1] < 0 || r+pos[m][0] >= pasture.length || c+pos[m][1] >= pasture[0].length)) {
+									nextB[r][c] += currentB[r+pos[m][0]][c+pos[m][1]];
+								}
 							}
 						}
 					}
@@ -132,7 +134,7 @@ public class USACO {
 			
 			
 		}
-		catch(Exception x) {
+		catch(FileNotFoundException x) {
 			System.out.println(x);
 		}
 		return -1;
@@ -140,7 +142,7 @@ public class USACO {
 	}
 	
 	public static void main(String[] args) {
-		
+		System.out.println(silver(args[0]));
 		
 		
 	}

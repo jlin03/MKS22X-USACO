@@ -107,13 +107,41 @@ public class USACO {
 			for(int i = 0; i < dataS.length; i++) {
 				coords[i] = Integer.parseInt(dataS[i]);
 			}
+			int[][] currentB = new int[rows][cols];
+			int[][] nextB = new int[rows][cols];
 			
+			currentB[coords[0]][coords[1]] = 1;
+			
+			for(int i = 0; i < moves; i++) {
+				for(int r = 0; r < rows; r++) {
+					for(int c = 0; c < cols; c++) {
+						if(pasture[r][c] != '*') {
+							for(int m = 0; m < pos.length; m++) {
+								nextB[r][c] += currentB[pos[m][0]][pos[m][1]];
+							}
+						}
+					}
+				}
+				currentB = nextB;
+				nextB = new int[rows][cols];
+			}
+			return currentB[coords[2]][coords[3]];
 			
 			
 			
 			
 			
 		}
+		catch(Exception x) {
+			System.out.println(x);
+		}
+		return -1;
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		
 		
 	}
 

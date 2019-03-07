@@ -3,12 +3,13 @@ import java.io.*;
 
 public class USACO {
 
-  private int[][] round = {{1,0},{1,1},{1,-1},{0,1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,0}};
+  private static int[][] round = {{1,0},{1,1},{1,-1},{0,1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,0}};
 
-   public static void bronze(String filename) {
+   public static int bronze(String filename) {
      int[][] pasture;
      int e;
      int n;
+     int volume = 0;
      try {
      File f = new File(filename);
      Scanner scan = new Scanner(f);
@@ -35,25 +36,37 @@ public class USACO {
      for(int m = 0; m < n; m++) {
        line = scan.nextLine();
        dataS = line.split(" ");
-       int[] data = new int[dataS.length];
+       data = new int[dataS.length];
        for(int i = 0; i < dataS.length; i++) {
          data[i] = Integer.parseInt(dataS[i]);
        }
        int r_s = data[0];
        int c_s = data[1];
        int d_s = data[2];
-       ArrayList<int> blocks = new ArrayList<int>();
-       for(int i = 0; i < 9;i++) {
-         blocks.add(pasture[r_s + round[i][0]][c_s + round[i][1]]);
-       }
-       Collections.sort(blocks);
-       for(int i = 0; i < 9;i++) {
-         if(pasture[r_s + round[i][0]][c_s + round[i][1]] == blocks.get(8)) {
-           pasture[r_s + round[i][0]][c_s + round[i][1]]--;
+       for(int d = 0; d < d_s;d++) {
+         ArrayList<Integer> blocks = new ArrayList<Integer>();
+         for(int i = 0; i < 9;i++) {
+           blocks.add(pasture[r_s + round[i][0]][c_s + round[i][1]]);
+         }
+         Collections.sort(blocks);
+         for(int i = 0; i < 9;i++) {
+           if(pasture[r_s + round[i][0]][c_s + round[i][1]] == blocks.get(8)) {
+             pasture[r_s + round[i][0]][c_s + round[i][1]]--;
+           }
+         }
+      }
+      System.out.println(Arrays.deepToString(pasture));
+     }
+
+     for(int r = 0; r < pasture.length; r++) {
+       for(int c = 0; c < pasture[r].length; c++) {
+         if(pasture[r][c] < e) {
+           pasture[r][c] = e - pasture[r][c];
+           volume += pasture[r][c] * 72 * 72;
          }
        }
      }
-
+     return volume;
 
 
 
@@ -62,10 +75,12 @@ public class USACO {
       System.out.println(x);
     }
 
+    return -1;
+
    }
 
    public static void main(String[] args) {
-     bronze(args[0]);
+     System.out.println(bronze(args[0]));
 
    }
 

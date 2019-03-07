@@ -3,6 +3,8 @@ import java.io.*;
 
 public class USACO {
 
+  private int[][] round = {{1,0},{1,1},{1,-1},{0,1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,0}};
+
    public static void bronze(String filename) {
      int[][] pasture;
      int e;
@@ -39,9 +41,19 @@ public class USACO {
        }
        int r_s = data[0];
        int c_s = data[1];
-       int d_s = data[3];
-
+       int d_s = data[2];
+       ArrayList<int> blocks = new ArrayList<int>();
+       for(int i = 0; i < 9;i++) {
+         blocks.add(pasture[r_s + round[i][0]][c_s + round[i][1]]);
+       }
+       Collections.sort(blocks);
+       for(int i = 0; i < 9;i++) {
+         if(pasture[r_s + round[i][0]][c_s + round[i][1]] == blocks.get(8)) {
+           pasture[r_s + round[i][0]][c_s + round[i][1]]--;
+         }
+       }
      }
+
 
 
 

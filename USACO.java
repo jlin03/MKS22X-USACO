@@ -81,7 +81,7 @@ public class USACO {
    }
 
 	public static int silver(String filename) {
-		int[][] pasture;
+		char[][] pasture;
 		try {
 			File f = new File(filename);
 			Scanner scan = new Scanner(f);
@@ -94,7 +94,21 @@ public class USACO {
 			int rows = data[0];
 			int cols = data[1];
 			int moves = data[2];
-			pasture = new int[rows][cols];
+			pasture = new char[rows][cols];
+			for(int r = 0; r < rows; r++) {
+				line = scan.nextLine();
+				for(int c = 0; c < cols; c++) {
+					pasture[r][c] = line.charAt(c);
+				}
+			}
+			line = scan.nextLine();
+			dataS = line.split(" ");
+			int[] coords = new int[4];
+			for(int i = 0; i < dataS.length; i++) {
+				coords[i] = Integer.parseInt(dataS[i]);
+			}
+			
+			
 			
 			
 			

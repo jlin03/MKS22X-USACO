@@ -4,6 +4,7 @@ import java.io.*;
 public class USACO {
 
   private static int[][] round = {{1,0},{1,1},{1,-1},{0,1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,0}};
+  private static int[][] pos = {{1,0},{-1,0},{0,1},{0,-1}};
 
    public static int bronze(String filename) {
      int[][] pasture;
@@ -79,7 +80,28 @@ public class USACO {
 
    }
 
-
+	public static int silver(String filename) {
+		int[][] pasture;
+		try {
+			File f = new File(filename);
+			Scanner scan = new Scanner(f);
+			String line = scan.nextLine();
+			String[] dataS = line.split(" ");
+			int[] data = new int[dataS.length];
+			for(int i = 0; i < dataS.length; i++) {
+				data[i] = Integer.parseInt(dataS[i]);
+			}
+			int rows = data[0];
+			int cols = data[1];
+			int moves = data[2];
+			pasture = new int[rows][cols];
+			
+			
+			
+			
+		}
+		
+	}
 
 
 
